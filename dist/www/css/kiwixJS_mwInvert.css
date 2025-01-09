@@ -1,0 +1,50 @@
+﻿/*!
+ * kiwixJS_mwInvert.css
+ * Licence GPL v3:
+ *
+ * Stylesheet for applying a content theme to articles extracted from a ZIM archive by Kiwix JS.
+ * 
+ * This is an inversion stylesheet with workarounds intended to improve the readability of dark-themed content from
+ * Wikimedia ZIMs. The stylesheet re-inverts images and videos so that they do not look like photographic negatives.
+ * For more information about the inversion process, see kiwixJS_invert.css in this folder.
+ *
+ * Some non-generic exceptions are applied to WikiMedia ZIMs: fallback images for MathML embedded equations (which must
+ * be rendered inverted in order to be visible inline) and drawings and figures which are rendered with an off-white
+ * background so that they are visible. This mirrors proposals in https://github.com/openzim/mwoffliner/issues/1026 .
+ * If you are viewing a ZIM which has already implemented those proposals, try the generic inversion filter instead.
+ *
+ * This file is part of Kiwix.
+ *
+ * Kiwix is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public Licence as published by
+ * the Free Software Foundation, either version 3 of the Licence, or
+ * (at your option) any later version.
+ *
+ * Kiwix is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public Licence for more details.
+ *
+ * You should have received a copy of the GNU General Public Licence
+ * along with Kiwix (file LICENSE-GPLv3.txt).  If not, see <http://www.gnu.org/licenses/>
+ */
+
+img:not([class|="mwe-math-fallback-image"], [class^="latex"]),
+video,
+canvas {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Add an off-white background to drawings and figures */
+
+img[data-file-type^="drawing"], figure-inline img {
+    background: #ddd !important;
+}
+
+/* mw-offliner hard-codes a 'background: black' rule into its mobile stylesheet, which gets inverted to white by this
+filter and produces a jarring effect. This rule removes the background, leaving a black base (after inversion). */
+
+#container,
+#content {
+    background: transparent !important;
+}

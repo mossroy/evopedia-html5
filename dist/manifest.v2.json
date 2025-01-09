@@ -1,0 +1,48 @@
+{
+    "manifest_version": 2,
+    "name": "__MSG_extensionName__",
+    "version": "4.1.2",
+
+    "description": "__MSG_extensionDescription__",
+    
+    "icons": {
+        "16": "www/img/icons/kiwix-16.png",
+        "19": "www/img/icons/kiwix-19.png",
+        "32": "www/img/icons/kiwix-32.png",
+        "38": "www/img/icons/kiwix-38.png",
+        "48": "www/img/icons/kiwix-48.png",
+        "64": "www/img/icons/kiwix-64.png",
+        "90": "www/img/icons/kiwix-90.png",
+        "128": "www/img/icons/kiwix-128.png"
+    },
+
+    "browser_action": {
+        "default_icon": {
+            "16": "www/img/icons/kiwix-16.png",
+            "19": "www/img/icons/kiwix-19.png",
+            "32": "www/img/icons/kiwix-32.png",
+            "38": "www/img/icons/kiwix-38.png",
+            "64": "www/img/icons/kiwix-64.png"
+        },
+        "default_title": "Kiwix"
+    },
+    
+    "applications": {
+        "gecko": {
+            "id": "kiwix-html5-unlisted@kiwix.org"
+        }
+    },
+    
+    "web_accessible_resources": ["www/index.html"],
+
+    "background": {
+        "scripts": ["backgroundscript.js"]
+    },
+
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    
+    "default_locale": "en",
+    "author": "mossroy",
+    "homepage_url": "https://www.kiwix.org",
+    "offline_enabled": true
+}

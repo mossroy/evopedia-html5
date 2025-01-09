@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: file: blob: about: 'unsafe-inline' 'unsafe-eval'; frame-src 'self' moz-extension: chrome-extension:; object-src 'none';">
+<meta charset="utf-8"/>
+<style>
+html, body
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+</style>
+</head>
+<body style="margin: 0; padding: 0;">
+<iframe id="replay_iframe" frameborder="0" seamless="seamless" scrolling="yes" class="wb_iframe" allow="autoplay; fullscreen"></iframe>
+<script>
+  const prefix = "$PREFIX";
+  const startUrl = "$URL";
+
+  const iframe = document.querySelector("iframe");
+
+  // update URL when iframe changes
+  window.addEventListener("message", function() {
+    if (event.data.wb_type === "load" || event.data.wb_type === "replace-url") {
+
+      if (event.data.title) {
+        document.title = event.data.title;
+      }
+      
+      // remove scheme to be consistent with current canonicalization
+      const urlNoScheme = event.data.url.slice(event.data.url.indexOf("//") + 2);
+      window.history.replaceState(null, "", prefix + urlNoScheme);
+
+      // if icons received, replace any existing icons with new ones
+      if (event.data.icons) {
+        const head = document.querySelector('head');
+        const oldLinks = document.querySelectorAll("link[rel*='icon']");
+
+        for (const link of oldLinks) {
+          head.removeChild(link);
+        }
+
+        // attempt to load the default "<origin>/favicon.ico" if no other favicon is specified
+        if (!event.data.icons.length) {
+          event.data.icons = [{
+            "href": prefix + "mp_/" + new URL("/favicon.ico", event.data.url),
+            "rel": "icon"
+          }];
+        }
+
+        for (const icon of event.data.icons) {
+          const link = document.createElement('link');
+          link.rel = icon.rel;
+
+          const parts = icon.href.split("/mp_/", 2);
+
+          // probably an invalid URL
+          if (parts.length < 2) {
+            continue;
+          }
+
+          const url = parts[1];
+
+          const urlNoScheme = url.slice(url.indexOf("//") + 2);
+
+          // need to escape utf-8, then % encode the entire string
+          let encodedUrl = encodeURI(urlNoScheme);
+          encodedUrl = encodeURIComponent(urlNoScheme)
+
+          link.href = parts[0] + "/" + encodedUrl;
+          
+          head.appendChild(link);
+        }
+      }
+    }
+  });
+
+  iframe.src = prefix + "mp_/" + startUrl;
+</script>
+</body>
+</html>

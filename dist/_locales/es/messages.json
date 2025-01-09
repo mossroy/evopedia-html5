@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "Kiwix JS Navegador sin conexión",
+    "description": "Nombre de la extensión."
+  },
+
+  "extensionDescription": {
+    "message": "Kiwix es un lector sin conexión para contenido de Wikipedia, TED Talks, Stackexchange y muchas otras fuentes.",
+    "description": "Descripción de la extensión."
+  }
+}

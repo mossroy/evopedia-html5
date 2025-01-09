@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "__MSG_extensionName__",
+    "short_name": "Kiwix JS",
+    "version": "4.1.2",
+
+    "description": "__MSG_extensionDescription__",
+    
+    "icons": {
+        "16": "www/img/icons/kiwix-16.png",
+        "19": "www/img/icons/kiwix-19.png",
+        "32": "www/img/icons/kiwix-32.png",
+        "38": "www/img/icons/kiwix-38.png",
+        "48": "www/img/icons/kiwix-48.png",
+        "64": "www/img/icons/kiwix-64.png",
+        "90": "www/img/icons/kiwix-90.png",
+        "128": "www/img/icons/kiwix-128.png"
+    },
+
+    "action": {
+        "default_icon": {
+            "16": "www/img/icons/kiwix-16.png",
+            "19": "www/img/icons/kiwix-19.png",
+            "32": "www/img/icons/kiwix-32.png",
+            "38": "www/img/icons/kiwix-38.png",
+            "64": "www/img/icons/kiwix-64.png"
+        },
+        "default_title": "Kiwix"
+    },
+
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';",
+        "sandbox": "sandbox allow-scripts allow-downloads allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval'; child-src 'self';"
+    },
+
+    "web_accessible_resources": [{
+        "resources": ["www/index.html", "www/article.html"],
+        "matches": ["https://*.kiwix.org/*", "https://kiwix.github.io/*"]
+    }],
+
+    "default_locale": "en",
+    "author": "Kiwix",
+    "homepage_url": "https://www.kiwix.org",
+    "offline_enabled": true
+}
