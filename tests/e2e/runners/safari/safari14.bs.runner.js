@@ -1,6 +1,7 @@
 import { Builder } from 'selenium-webdriver';
 import legacyRayCharles from '../../spec/legacy-ray_charles.e2e.spec.js';
 import gutenbergRo from '../../spec/gutenberg_ro.e2e.spec.js';
+import tonedearTests from '../../spec/tonedear.e2e.spec.js';
 
 /* eslint-disable camelcase */
 
@@ -42,3 +43,6 @@ await legacyRayCharles.runTests(driver_legacy_safari, ['jquery']);
 
 const driver_gutenberg_safari = await loadSafariDriver();
 await gutenbergRo.runTests(driver_gutenberg_safari, ['jquery']);
+
+const driver_tonedear_safari = await loadSafariDriver();
+await tonedearTests.runTests(driver_tonedear_safari, ['jquery']);

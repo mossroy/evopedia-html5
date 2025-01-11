@@ -58,9 +58,10 @@ console.log('\nLoading archive:\n' + rayCharlesAllParts + '\n');
  *  Run the tests
  * @param {WebDriver} driver Selenium WebDriver object
  * @param {array} modes Array of modes to run the tests in
+ * @param {boolean} keepDriver Whether to keep the driver open after the tests have run
  * @returns {Promise<void>}  A Promise for the completion of the tests
 */
-function runTests (driver, modes) {
+function runTests (driver, modes, keepDriver) {
     let browserName, browserVersion;
     driver.getCapabilities().then(function (caps) {
         browserName = caps.get('browserName');
@@ -192,7 +193,7 @@ function runTests (driver, modes) {
                 } else {
                     // Skip remaining SW mode tests if the browser does not support the SW API
                     console.log('\x1b[33m%s\x1b[0m', '      Skipping SW mode tests because browser does not support API');
-                    await driver.quit();
+                    if (!keepDriver) await driver.quit();
                 }
                 // Disable source verification in SW mode as the dialogue box gave incosistent test results in automated tests
                 if (mode === 'serviceworker') {
@@ -345,7 +346,7 @@ function runTests (driver, modes) {
                 const title = await driver.findElement(By.id('titleHeading')).getText();
                 assert.equal('Ray Charles', title);
                 // If we have reached the last mode, quit the driver
-                if (mode === modes[modes.length - 1]) {
+                if (mode === modes[modes.length - 1] && !keepDriver) {
                     await driver.quit();
                 }
             });
