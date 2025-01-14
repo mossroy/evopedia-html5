@@ -1,6 +1,7 @@
 import { Builder } from 'selenium-webdriver';
 import { Options } from 'selenium-webdriver/chrome.js';
 import gutenbergRo from '../../spec/gutenberg_ro.e2e.spec.js';
+import tonedear from '../../spec/tonedear.e2e.spec.js';
 import paths from '../../paths.js';
 
 /* eslint-disable camelcase */
@@ -37,8 +38,9 @@ async function loadChromeDriver () {
 // Maximize the window so that full browser state is visible in the screenshots
 // await driver_chrome.manage().window().maximize(); // Not supported in this version / Selenium
 
-console.log('\x1b[33m%s\x1b[0m', 'Running Gutenberg tests only for this browser version');
+console.log('\x1b[33m%s\x1b[0m', 'Running Gutenberg and Tonedear tests only for this browser version');
 console.log(' ');
 
 // make sure to use await running tests or we are charged unnecessarily on Browserstack
 await gutenbergRo.runTests(await loadChromeDriver());
+await tonedear.runTests(await loadChromeDriver());

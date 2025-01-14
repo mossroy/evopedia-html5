@@ -1864,6 +1864,8 @@ async function archiveReadyCallback (archive) {
     if (settingsStore.getItem('trustedZimFiles') === null) {
         settingsStore.setItem('trustedZimFiles', '', Infinity);
     }
+    // This is used for testing: if the noPrompts flag is set, we skip the source verification
+    if (params.noPrompts) params.sourceVerification = false;
     if (params.sourceVerification && (params.contentInjectionMode === 'serviceworker' || params.contentInjectionMode === 'serviceworkerlocal')) {
         // Check if source of the zim file can be trusted.
         if (!(settingsStore.getItem('trustedZimFiles').includes(archive.file.name))) {

@@ -1,11 +1,13 @@
 import { Builder } from 'selenium-webdriver';
 import legacyRayCharles from '../../spec/legacy-ray_charles.e2e.spec.js';
 import gutenbergRo from '../../spec/gutenberg_ro.e2e.spec.js';
+import tonedear from '../../spec/tonedear.e2e.spec.js';
 
 /* eslint-disable camelcase */
 
 // Input capabilities
 const capabilities = {
+    'browserstack.idleTimeout': 300,
     'bstack:options': {
         os: 'Windows',
         osVersion: '10',
@@ -35,8 +37,10 @@ async function loadEdgeLegacyDriver () {
     return driver;
 };
 
-const driver_edge_legacy = await loadEdgeLegacyDriver();
-await legacyRayCharles.runTests(driver_edge_legacy);
+// For this runner, we must use a single driver for all tests to avoid the other drivers
+// timing out while earlier tests complete
+const singleDriver = await loadEdgeLegacyDriver();
 
-const driver_edge_gutenberg = await loadEdgeLegacyDriver();
-await gutenbergRo.runTests(driver_edge_gutenberg);
+await legacyRayCharles.runTests(singleDriver, null, true);
+await gutenbergRo.runTests(singleDriver, null, true);
+await tonedear.runTests(singleDriver);
