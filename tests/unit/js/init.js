@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 /**
  * init.js : Configuration for the library require.js
  * This file handles the dependencies between javascript libraries, for the unit tests
@@ -33,6 +34,41 @@ params['sourceVerification'] = false;
 // Test if WebP is natively supported, and if not, load a webpMachine instance. This is used in uiUtils.js.
 // eslint-disable-next-line no-unused-vars
 var webpMachine = false;
+
+// Create a mock Image class for Node.js environment
+if (typeof window === 'undefined') {
+    // We're in Node.js
+    global.Image = class Image {
+        constructor () {
+            this.height = 0;
+            setTimeout(() => {
+                // Simulate successful WebP support
+                this.height = 2;
+                if (typeof this.onload === 'function') {
+                    this.onload();
+                }
+            }, 0);
+        }
+    };
+
+    global.document = {
+        head: {
+            appendChild: function () {} // Mock appendChild
+        },
+        createElement: function () {
+            return {
+                onload: null,
+                src: ''
+            };
+        }
+    };
+
+    global.webpHero = {
+        WebpMachine: class WebpMachine {
+            constructor () {}
+        }
+    };
+}
 
 // We use a self-invoking function here to avoid defining unnecessary global functions and variables
 (function (callback) {
