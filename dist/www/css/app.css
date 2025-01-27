@@ -1,0 +1,436 @@
+/*!
+ * app.css : Main CSS of the application
+ *
+ * Copyright 2013-2019 Mossroy and contributors
+ * Licence GPL v3:
+ *
+ * This file is part of Kiwix.
+ *
+ * Kiwix is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public Licence as published by
+ * the Free Software Foundation, either version 3 of the Licence, or
+ * (at your option) any later version.
+ *
+ * Kiwix is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public Licence for more details.
+ *
+ * You should have received a copy of the GNU General Public Licence
+ * along with Kiwix (file LICENSE-GPLv3.txt).  If not, see <http://www.gnu.org/licenses/>
+ */
+
+[role=region] {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    overflow-x: hidden;
+}
+[role=region] > header {
+     margin-bottom: 1rem;
+     text-align: center;
+}
+[role=region] > header > h1 {
+    margin: 0;
+    text-shadow: 0 1px 1px rgba(0,0,0,.4);
+}
+[role=region] > .view-content {
+    margin: 0;
+    position: relative; /*Fixes #250 Random button display bug in W10M */
+}
+[role=region] > footer {
+    background: rgba(0,0,0,.2);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
+}
+[role=region] > footer > menu[role=toolbar] {
+    margin: 0;
+    padding: 0;
+}
+
+#navigationButtons .restrictedSize {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nopadding {
+    padding-right: 1px !important;
+    padding-left: 1px !important;
+}
+
+.dragging-over * {
+    pointer-events: none;
+}
+
+.form-control {
+    margin-top: 3px;
+    margin-right: 4px;
+}
+
+#articleList {
+    margin-bottom: 12px !important;
+}
+
+#top, #articleContent, #footer, article {
+    transition: transform 0.3s ease;
+}
+
+#articleListWithHeader {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    padding-left: 12px;
+    padding-right: 12px;
+    background: lightblue;
+    z-index: 1;
+}
+
+#articleList a:hover, #articleList a.hover {
+    background: lightblue;
+}
+
+#formArticleSearch {
+    padding-top: 20px;
+    padding-bottom: 0px;
+}
+
+#configuration {
+    margin: 0 1rem;
+}
+
+#filesSelectionInfoAndCount {
+    padding-top: 0.5rem;
+}
+#filesSelectionInfoAndCount p{
+    display: inline;
+}
+
+#archiveList {
+    width: 60%;
+    min-width: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#rescanButtonAndText button {
+    margin-top: 0.5rem;
+}
+/* Custom file input */
+
+input[type="file"] {
+    display: none;
+}
+
+iframe {
+    border: 0;
+}
+
+.custom-file-upload {
+    border: 2px solid darkgray;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.dark .custom-file-upload {
+    border: 2px solid darkslategray;
+}
+
+
+/* App theme: dark */
+
+.dark header, .dark #cachingAssets, .dark #about, .dark #configuration, .dark #welcomeText, .dark #articleListWithHeader,
+.dark #alertBoxHeader, .dark footer:not([class=_light]), .dark img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.dark body {
+    background: #171717;
+}
+
+.dark .card-warning .card-header {
+    background-color: #FFFF00;
+}
+
+.dark .modal-content{
+    background: #333 !important;
+}
+
+.dark .modal-title, .dark .modal-body{
+    color: #FFFFFF !important;
+}
+
+/* End of app theme: dark */
+
+/* Content themes: _invert, _mwInvert */
+
+iframe._invert, iframe._mwInvert {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* End of content themes */
+
+.appThemeInfo {
+    display: none;
+    margin: 5px;
+}
+
+.articleIFrame {
+    width: 100%;
+    border: 0;
+}
+
+.apiAvailable {
+    color: green;
+}
+
+.apiUnavailable, .apiSuboptimal {
+    color : orange;
+}
+
+.apiBroken {
+    color : red;
+}
+
+.loader {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border: 5px solid lightgrey;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid steelblue;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.status {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
+}
+
+.message {
+    position: absolute;
+    margin: 70px auto 0;
+    left: 0;
+    right: 0;
+    font-size: smaller;
+    background: whitesmoke;
+    color: dimgrey;
+    border: 1px solid gainsboro;
+    padding: 1px 4px;
+    width: 200px;
+}
+
+.alert {
+    margin-bottom: 0 !important;
+}
+
+.alert-link {
+    text-decoration: underline;
+}
+
+#alertBoxHeader {
+    transition: opacity 0.5s;
+    text-align: center;
+}
+
+.modal-dialog {
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.1s;
+    animation-name: animatetop;
+    animation-duration: 0.1s;
+}
+
+#modal-archive-metadata-container {
+    border: solid 1px lightgrey;
+    padding: 10px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.archive-metadata {
+    margin: 0;
+    padding: 0;
+}
+
+#modal-archive-metadata-warning {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.container {
+    margin-bottom: 1.5em;
+}
+
+.card {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+/* Modify default Bootstrap 4 colours */
+.card-info {
+    border-color: #bce8f1;
+}
+.card-info .card-header {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+.card-success {
+    border-color: #d6e9c6;
+}
+.card-success .card-header{
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+.card-danger {
+    border-color: #ebccd1;
+}
+.card-danger .card-header {
+    background-color: #f2dede;
+    color: #a94442;
+}
+.card-warning {
+    border-color: #faebcc;
+}
+.card-warning .card-header {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+}
+
+.btn-lg {
+    color: #337ab7;
+}
+
+/* Change focus styles on top nav-bar buttons (keep border-color for keyboard users) */
+.btn-nav-top:focus {
+    background: none;
+    border-color: #80bdff !important;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25) !important;
+}
+
+/* Note: This one is !important to override the .active > button box-shadow */
+.btn-nav-top:hover {
+    background-color: #e2e6ea !important;
+    box-shadow: 0 0 0 -.1rem rgba(216,217,219,.8) !important;
+}
+
+.active > button {
+    color: #212529 !important;
+    background-color: #e2e6ea !important;
+    border-color: #dae0e5 !important;
+    box-shadow: 0 0 0 .2rem rgba(216,217,219,.5) !important;
+}
+
+/* Add missing margin to buttons */
+button {
+    margin: 2px;
+}
+
+.btn-danger {
+    background-color: lightyellow;
+    color: darkred;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animation for .modal-dialog */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0px; opacity: 1}
+}
+
+/* Reduce the size of some elements for small screens */
+@media (max-width: 768px) {
+
+    /* Reduce the height of top menu */
+    .navbar {
+        min-height: 20px !important;
+        margin-bottom: 1px !important;
+    }
+    .navbar-brand {
+        padding-top: 2px !important;
+        padding-bottom: 1px !important;
+        height: 25px !important;
+    }
+    .navbar-toggle {
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        margin-top: 2px !important;
+        margin-bottom: 0 !important;
+    }
+    [role=region] > header {
+        margin-bottom: 0 !important;
+    }
+
+    /* Remove space between search zone and iframe */
+    .list-group {
+        margin-bottom: 0 !important;
+    }
+
+    /* Reduce height of the search field */
+    .form-control {
+        padding-bottom: 5px !important;
+    }
+    #formArticleSearch {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    /* Reduce size of the top buttons */
+    .btn-outline-secondary {
+        font-size: 10px !important;
+    }
+
+    /* margin between search button and result text */
+    #formArticleSearch > .container {
+        margin-top: 0rem;
+        margin-bottom: 0.2rem;
+    }
+
+    /* Article Form */
+    #formArticleSearch .form-control {
+        height: 31px ;
+        padding: 2px 8px ;
+        font-size: 13px ;
+        margin-right: 4px;
+    }
+
+    /* search button */
+    #formArticleSearch .btn {
+        height: 30px ;
+        padding: 2px 10px ;
+        font-size: 14px ;
+        line-height: 1.5 ;
+    }
+
+    /* Reduce size of the bottom buttons */
+    .btn-lg, .btn-group-lg > .btn {
+        padding-top: 1px ;
+        padding-bottom: 1px ;
+        font-size: 16px ;
+    }
+
+    #archiveList {
+        width: 100%;
+        min-width: auto;
+        margin-bottom: 0.5em;
+    }
+
+    .btn-group{
+        height: 100%;
+    }
+    
+}

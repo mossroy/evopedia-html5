@@ -1,0 +1,33 @@
+﻿/*!
+ * kiwixJS_invert.css
+ * Licence GPL v3:
+ *
+ * Stylesheet for applying a content theme to articles extracted from a ZIM archive by Kiwix JS.
+ * 
+ * This is a pure generic stylesheet for inverting the display of content extracted from any ZIM.
+ * The actual inversion is done in app.css by applying an inversion filter to the element in the outer document (e.g. iframe)
+ * that contains the embedded article. This stylesheet re-inverts images and videos so that they do not look like
+ * photographic negatives. In principle, inversion could be achieved by adding the 'html' selector to the first rule below,
+ * but this causes non-WAI-compliant flashes (to white) between article loads in Service Worker mode.
+ *
+ * This file is part of Kiwix.
+ *
+ * Kiwix is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public Licence as published by
+ * the Free Software Foundation, either version 3 of the Licence, or
+ * (at your option) any later version.
+ *
+ * Kiwix is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public Licence for more details.
+ *
+ * You should have received a copy of the GNU General Public Licence
+ * along with Kiwix (file LICENSE-GPLv3.txt).  If not, see <http://www.gnu.org/licenses/>
+ */
+
+img,
+video,
+canvas {
+    filter: invert(1) hue-rotate(180deg);
+}

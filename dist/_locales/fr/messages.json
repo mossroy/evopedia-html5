@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "Kiwix JS Navigateur hors ligne",
+    "description": "Nom de l'extension."
+  },
+
+  "extensionDescription": {
+    "message": "Kiwix est un lecteur hors ligne pour le contenu de Wikipédia, TED Talks, Stackexchange et de nombreuses autres sources.",
+    "description": "Déscription de l'extension."
+  }
+}

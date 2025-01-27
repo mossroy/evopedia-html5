@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "Kiwix JS Browser Extension",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Kiwix is an offline reader for content from Wikipedia, TED Talks, Stackexchange, and many other sources.",
+    "description": "Description of the extension."
+  }
+}

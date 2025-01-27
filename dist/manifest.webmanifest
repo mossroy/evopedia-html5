@@ -1,0 +1,26 @@
+{
+    "name": "Kiwix JS Browser Extension",
+    "short_name": "Kiwix JS",
+    "categories": ["reference", "books", "education"],
+    "start_url": ".",
+    "description": "Kiwix is an offline reader for content from Wikipedia, Project Gutenberg, TED Talks, Wikivoyage, Stackexchange, and many other Web archives. It makes knowledge available to people with limited or no Internet access.",
+    "lang": "en-GB",
+    "background_color": "#000",
+    "icons": [
+        {
+          "src": "www/img/icons/kiwix-32.png",
+          "sizes": "32x32",
+          "type": "image/png"
+        },
+        {
+          "src": "www/img/icons/kiwix-60.png",
+          "sizes": "60x60",
+          "type": "image/ico"
+        },
+        {
+          "src": "www/img/icons/kiwix-256.png",
+          "sizes": "256x256",
+          "type": "image/png"
+        }
+    ]
+}
