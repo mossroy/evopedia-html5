@@ -31,7 +31,7 @@ import XZWASM from './xzdec-wasm.js';
 var XZMachineType = null;
 
 // Select asm or wasm conditionally
-if ('WebAssembly' in self) {
+if ('WebAssembly' in self && 'Fetch' in self) {
     console.debug('Instantiating WASM xz decoder');
     XZMachineType = 'WASM';
 } else {

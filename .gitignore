@@ -36,6 +36,8 @@ intermediate
 publish
 .idea
 nbproject/private
+.nyc_output
+coverage
 
 # build script local files
 build/buildinfo.properties
